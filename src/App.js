@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Header from './components/Header/Header';
+import Title from './components/Title/Title';
+import DatePicker from './components/DatePicker/DatePicker';
+import Picture from './components/Picture/Picture';
+import Explanation from './components/Explanation/Explanation';
+import { getPicture } from './api/getPicture';
 import './App.css';
 
 function App() {
+  const [picture, setPicture] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    getPicture().then((data) => setPicture(data));
+  }, []);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        <Title />
+        <DatePicker />
+        {picture ? (
+          <>
+            <Picture picture={picture} />
+            <Explanation picture={picture.explanation} isOpen={isOpen} />
+            <span onClick={handleClick}>
+              {isOpen ? 'Show Less' : 'Read More..'}
+            </span>
+          </>
+        ) : (
+          <div>loading</div>
+        )}
+      </main>
     </div>
   );
 }
