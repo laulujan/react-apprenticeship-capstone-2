@@ -1,13 +1,14 @@
 import React from 'react';
+import { Image, Figure, ImgWrapper, Caption } from './Picture.styles';
 
 const Picture = ({ picture }) => {
   return (
-    <figure>
-      <img src={picture.url} alt={picture.title} />
-      <figcaption>
-        {picture.title}, {picture.copyright}
-      </figcaption>
-    </figure>
+    <Figure>
+      <ImgWrapper>
+        <Image src={picture.url} alt={picture.title} />
+      </ImgWrapper>
+      <Caption>{picture.title}</Caption>
+    </Figure>
   );
 };
 

@@ -1,10 +1,21 @@
 import React from 'react';
+import { Section, TextBox, Span } from './Explanation.styles';
 
-const Explanation = ({ picture, isOpen }) => {
+const Explanation = ({ description, isOpen, onClick }) => {
   return (
-    <section>
-      {isOpen ? <p>{picture}</p> : <p>{picture.slice(0, 100)}...</p>}
-    </section>
+    <Section>
+      {isOpen ? (
+        <TextBox>
+          {description}{' '}
+          <Span onClick={onClick}>{isOpen ? 'Show Less' : 'Read More..'}</Span>
+        </TextBox>
+      ) : (
+        <TextBox>
+          {description.slice(0, 100)}...{' '}
+          <Span onClick={onClick}>{isOpen ? 'Show Less' : 'Read More..'}</Span>
+        </TextBox>
+      )}
+    </Section>
   );
 };
 

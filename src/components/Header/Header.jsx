@@ -1,12 +1,13 @@
 import React from 'react';
+import { MyHeader, Image } from './Header.styles';
 
 const Header = () => {
   return (
-    <header>
+    <MyHeader>
       <figure>
-        <img src="/nasa.png" alt="Nasa Logo" />
+        <Image src="/nasa.png" alt="Nasa Logo" />
       </figure>
-    </header>
+    </MyHeader>
   );
 };
 

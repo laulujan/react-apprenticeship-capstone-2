@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
+import { DatePickerContainer, Label, Input, Button } from './DatePicker.styles';
+import { getPicture } from '../../api/getPicture';
 
-const today = new Date().toISOString().split('T')[0];
-const DatePicker = () => {
+const DatePicker = ({ today, updatePicture }) => {
   const [date, setDate] = useState(today);
+
   const handleChange = (e) => {
     setDate(e.target.value);
   };
+  const handleClick = () => {
+    try {
+      getPicture(date).then((data) => {
+        updatePicture(data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <div>
-      <label>
+    <DatePickerContainer>
+      <Label>
         Select a date:
-        <input
+        <Input
           type="date"
           min="1995-06-16"
           id="dateinput"
@@ -18,8 +30,9 @@ const DatePicker = () => {
           max={today}
           value={date}
         />
-      </label>
-    </div>
+      </Label>
+      <Button onClick={handleClick}>See Picture</Button>
+    </DatePickerContainer>
   );
 };
 
