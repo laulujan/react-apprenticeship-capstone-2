@@ -2,12 +2,30 @@ import Picture from './Picture';
 import { render, screen, waitFor } from '@testing-library/react';
 
 describe('<Picture />', () => {
-  const picture = { title: 'test', url: 'url-test', copyright: 'copy-test' };
+  const picture = {
+    title: 'test',
+    url: 'url-test',
+    copyright: 'copy-test',
+    media_type: 'image',
+  };
   test('It renders picture of the day', async () => {
     render(<Picture picture={picture} />);
 
     await waitFor(() => {
       expect(screen.getByRole('img')).toBeInTheDocument();
+    });
+  });
+  test('It renders video when media type is video', async () => {
+    const pic = {
+      title: 'test',
+      url: 'url-test',
+      copyright: 'copy-test',
+      media_type: 'video',
+    };
+    render(<Picture picture={pic} />);
+
+    await waitFor(() => {
+      expect(document.getElementsByTagName('iframe')[0]).toBeInTheDocument();
     });
   });
 });
