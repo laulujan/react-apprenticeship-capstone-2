@@ -10,13 +10,13 @@ export const Main = styled.main`
 
 export const Left = styled.section`
   width: 38%;
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
     width: 100%;
   }
 `;
 export const Right = styled.section`
   width: 58%;
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
     width: 100%;
   }
 `;

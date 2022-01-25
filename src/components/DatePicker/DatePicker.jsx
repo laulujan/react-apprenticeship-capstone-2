@@ -9,13 +9,9 @@ const DatePicker = ({ today, updatePicture }) => {
     setDate(e.target.value);
   };
   const handleClick = () => {
-    try {
-      getPicture(date).then((data) => {
-        updatePicture(data);
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    getPicture(date).then((data) => {
+      updatePicture(data);
+    });
   };
 
   return (

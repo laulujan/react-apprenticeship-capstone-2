@@ -26,10 +26,8 @@ function App() {
   };
 
   const updatePicture = (data) => {
-    if ('code' in data) {
-      setError(data.msg);
-    } else if ('error' in data) {
-      setError('There was an error, please try again.');
+    if ('error' in data) {
+      setError(data.error.msg);
     } else {
       setError(false);
       setPicture(data);

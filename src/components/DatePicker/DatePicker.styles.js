@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DatePickerContainer = styled.div`
   text-align: center;
   margin: 0.5em;
-  @media (max-width: 767.98px) {
+  @media (max-width: 991.98px) {
     margin: 1em;
   }
 `;
